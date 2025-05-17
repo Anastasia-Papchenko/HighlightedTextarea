@@ -1,4 +1,8 @@
 export function validateExpression(expr: string): string | null {
+  // expr = expr
+  //   .replace(/[“”«»„‟❝❞＂]/g, '"')
+  //   .replace(/[‘’‚‛❛❜']+/g, "'");
+
   let depth = 0;
   for (let i = 0; i < expr.length; i++) {
     const ch = expr[i];
@@ -10,11 +14,12 @@ export function validateExpression(expr: string): string | null {
   }
   if (depth > 0) return 'Не хватает закрывающих скобок';
 
-  if (!expr.trim()) return null; 
+  const trimmed = expr.trim();
+  if (trimmed === '' || trimmed === '""' || trimmed === "''") {
+    return null;
+  }
 
-  expr = expr
-    .replace(/[“”«»„‟❝❞＂]/g, '"')
-    .replace(/[‘’‚‛❛❜']+/g, "'");
+  if (!expr.trim()) return null; 
 
   const type2Regex = /\b[A-Za-z]{2,5}\s*=\s*(['"])(?:\\.|(?!\1)[^\\])*?\1/g;
   const type2Blocks = expr.match(type2Regex) ?? [];
@@ -29,7 +34,7 @@ export function validateExpression(expr: string): string | null {
   }
 
   if (!hasType1 && !hasType2) {
-    return `Нераспознанный текст: "${expr.trim()}"`;
+    return `Нераспознанный текст: ${expr.trim()}`;
   }
 
   let currentRegex: RegExp;
