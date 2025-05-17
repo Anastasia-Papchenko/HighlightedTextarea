@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@media (max-width: 722px) {
+  .expr-col {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+}

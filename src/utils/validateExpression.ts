@@ -51,7 +51,7 @@ export function validateExpression(expr: string): string | null {
   while ((m = re.exec(expr)) !== null) {
     if (m.index > lastIndex) {
       const unknown = expr.slice(lastIndex, m.index).trim();
-      if (unknown) return `Нераспознанный текст: "${unknown}"`;
+      if (unknown) return `Нераспознанный текст: ${unknown}`;
     }
     const val = m[0];
     if (/^\bAND\b$/i.test(val) || /^\bOR\b$/i.test(val)) tokens.push({type: 'op', value: val.toUpperCase()});
@@ -61,7 +61,7 @@ export function validateExpression(expr: string): string | null {
     lastIndex = re.lastIndex;
   }
   if (lastIndex < expr.length && expr.slice(lastIndex).trim())
-    return `Нераспознанный текст: "${expr.slice(lastIndex).trim()}"`;
+    return `Нераспознанный текст: ${expr.slice(lastIndex).trim()}`;
 
   let expectOp = false; 
   for (let i = 0; i < tokens.length; i++) {
