@@ -2,6 +2,8 @@
 
 Компонент `HighlightedTextarea` для React/TypeScript, превращающий обычное текстовое поле в редактор с подсветкой синтаксиса и проверкой логических поисковых выражений в реальном времени.
 
+**CodeSandbox:** https://codesandbox.io/p/sandbox/dank-worker-k57tdr
+
 ---
 
 ## Используемые технологии
