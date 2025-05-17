@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { HighlightedTextarea } from './components/HighlightedTextarea';
+import { validateExpression } from './utils/validateExpression';
+import { Alert } from 'antd';
 
-function App() {
+
+const App: React.FC = () => {
+  const [expr, setExpr] = useState('');
+  const error = validateExpression(expr);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ padding: 20 }}>
+      <h2>Введите логическое выражение</h2>
+      <HighlightedTextarea
+        value={expr}
+        placeholder='Например: TI="Kaspersky AND Lab" OR AB="Avast"'
+        onChange={setExpr}
+      />
+      <div style={{ marginTop: 16 }}>
+        {error ? (
+          <Alert type="error" message={`Ошибка: ${error}`} showIcon />
+        ) : (
+          expr && <Alert type="success" message="Выражение корректно" showIcon />
+        )}
+      </div>
     </div>
+   
   );
-}
+};
 
 export default App;

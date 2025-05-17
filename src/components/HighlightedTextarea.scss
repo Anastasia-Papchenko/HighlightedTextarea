@@ -1,0 +1,24 @@
+.highlighted-textarea {
+    textarea::placeholder {
+        color: #ccc;
+        font-style: italic;
+      }
+
+    .token-string {
+      color: rgb(116, 21, 225);
+    }
+    .token-logic {
+      font-weight: bold;
+      color: rgb(194, 19, 19);
+    }
+    .token-key {
+      color: #479ee0ec;
+    }
+    .token-key-invalid {
+      background: #fee;
+      color: #a00;
+    }
+    .token-paren {
+      color: #333;
+    }
+  }
